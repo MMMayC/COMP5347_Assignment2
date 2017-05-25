@@ -29,6 +29,30 @@ RevisionSchema.statics.findLeastRevisions = function(callback){
 	.exec(callback)
 }
 
+RevisionSchema.statics.findMostEdits = function(callback){
+	
+	return this.aggregate(
+			{$match:{"anon":{$exists: false}}},
+			{$group:{_id:"$title", users: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+			{$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}}, 
+			{$sort:{numOfEdits:-1}},
+			{$limit:1}
+			)
+	.exec(callback)
+}
+
+RevisionSchema.statics.findLeastEdits = function(callback){
+	
+	return this.aggregate(
+			{$match:{"anon":{$exists: false}}},
+			{$group:{_id:"$title", countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+			{$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}}, 
+			{$sort:{numOfEdits:1}},
+			{$limit:1}
+			)
+	.exec(callback)
+}
+
 var Revision = mongoose.model('Revision', RevisionSchema, 'revisions')
 
 module.exports = Revision
