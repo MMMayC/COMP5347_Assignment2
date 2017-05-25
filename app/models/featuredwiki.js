@@ -9,11 +9,23 @@ var RevisionSchema = new mongoose.Schema(
 			    versionKey: false 
 		})
 
-RevisionSchema.statics.findTitleLatestRev = function(title, callback){
+RevisionSchema.statics.findMostRevisions = function(callback){
 	
-	return this.find({'title':title})
-	.sort({'timestamp':-1})
-	.limit(1)
+	return this.aggregate(
+			{$group: {_id: "$title", numOfRevs: {$sum: 1}}},
+			{$sort: {numOfRevs: -1}},
+			{$limit: 1}
+			)
+	.exec(callback)
+}
+
+RevisionSchema.statics.findLeastRevisions = function(callback){
+	
+	return this.aggregate(
+			{$group: {_id: "$title", numOfRevs: {$sum: 1}}},
+			{$sort: {numOfRevs: 1}},
+			{$limit: 1}
+			)
 	.exec(callback)
 }
 
