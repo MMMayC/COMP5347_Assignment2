@@ -32,25 +32,49 @@ RevisionSchema.statics.findLeastRevisions = function(callback){
 RevisionSchema.statics.findMostEdits = function(callback){
 	
 	return this.aggregate(
-			{$match:{"anon":{$exists: false}}},
-			{$group:{_id:"$title", users: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
-			{$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}}, 
-			{$sort:{numOfEdits:-1}},
-			{$limit:1}
-			)
+        {$match:{"anon":{$exists: false}}},
+        {$group:{_id:{title:"$title"}, uniqueCount: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
+        {$sort:{uniqueUserCount:-1}},
+        {$limit:1}
+	)
 	.exec(callback)
 }
 
 RevisionSchema.statics.findLeastEdits = function(callback){
 	
 	return this.aggregate(
-			{$match:{"anon":{$exists: false}}},
-			{$group:{_id:"$title", countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
-			{$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}}, 
-			{$sort:{numOfEdits:1}},
-			{$limit:1}
+        {$match:{"anon":{$exists: false}}},
+        {$group:{_id:{title:"$title"}, uniqueCount: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
+        {$sort:{uniqueUserCount:1}},
+        {$limit:1}
 			)
 	.exec(callback)
+}
+
+RevisionSchema.statics.findLongestHistory = function(callback){
+
+    return this.aggregate(
+        {$match:{"anon":{$exists: false}}},
+        {$group:{_id:{title: "$title"}, countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
+        {$sort:{numOfEdits:1}},
+        {$limit:1}
+    )
+        .exec(callback)
+}
+
+RevisionSchema.statics.findShortestHistory = function(callback){
+
+    return this.aggregate(
+        {$match:{"anon":{$exists: false}}},
+        {$group:{_id:{title: "$title"}, countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
+        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
+        {$sort:{numOfEdits:1}},
+        {$limit:1}
+    )
+        .exec(callback)
 }
 
 var Revision = mongoose.model('Revision', RevisionSchema, 'revisions')
