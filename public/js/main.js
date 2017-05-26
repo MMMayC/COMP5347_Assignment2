@@ -9,7 +9,7 @@ var options = {'title':"Composition of Earth's atmosphere  ",
     'height':300};
 var data
 
-function drawPie(){
+function drawODU(){
     graphData = new google.visualization.DataTable();
     graphData.addColumn('string', 'Element');
     graphData.addColumn('number', 'Percentage');
@@ -20,7 +20,7 @@ function drawPie(){
     chart.draw(graphData, options);
 }
 
-function drawBar(){
+function drawODY(){
     graphData = new google.visualization.DataTable();
     graphData.addColumn('string', 'Element');
     graphData.addColumn('number', 'Percentage');
@@ -39,13 +39,13 @@ $(document).ready(function() {
         }
     );
 
-    $("#pie").click(function(event){
+    $("#overallDistriYear").click(function(event){
         event.preventDefault();
-        drawPie()
+        drawODY()
     })
-    $("#bar").click(function(event){
+    $("#overallDistriUser").click(function(event){
         event.preventDefault();
-        drawBar()
+        drawODU()
     })
 
 });
