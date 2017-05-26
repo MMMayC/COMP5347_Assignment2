@@ -55,18 +55,10 @@ RevisionSchema.statics.findLeastEdits = function(callback){
 
 RevisionSchema.statics.findLongestHistory = function(callback){
 
-    return this.aggregate(
-
-    )
-        .exec(callback)
 }
 
 RevisionSchema.statics.findShortestHistory = function(callback){
 
-    return this.aggregate(
-
-    )
-        .exec(callback)
 }
 
 var Revision = mongoose.model('Revision', RevisionSchema, 'revisions')
