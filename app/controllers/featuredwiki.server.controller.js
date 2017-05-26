@@ -106,7 +106,7 @@ module.exports.showIndex=function(req,res){
 			mostRevisions:mostRevisions[0]._id,
 			leastRevisions:leastRevisions[0]._id,
 			mostEdits: mostEdits[0]._id.title,
-			leastEdits: leastEdits[0]._id.title
+			leastEdits: leastEdits[0]._id.title,
 			longestHis: longestHis[0]._id,
 			shortestHis: shortestHis[0]._id,
             distribution: distribution[0]._id,
@@ -200,7 +200,7 @@ module.exports.getIndividual = function (req, res) {
             articleTitle: articleTitle[0]._id,
             revisions: revisions[0]._id,
             regularUsers: regularUsers[0]._id.title,
-            distribution: distribution[0]._id.title
+            distribution: distribution[0]._id.title,
             userTypesIndi: userTypesIndi[0]._id,
             distributionByRegUsers: distributionByRegUsers[0]._id,
         })

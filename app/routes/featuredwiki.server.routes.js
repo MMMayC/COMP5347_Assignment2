@@ -4,5 +4,5 @@ var router = express.Router()
 
 router.get('/', controller.showIndex)
 router.get('/getIndividual', controller.getIndividual)
-router.get('/getDistriByUsers', controller.getDistriByUsers)
+router.get('/selectDistriByUsers', controller.selectDistriByUsers)
 module.exports = router
