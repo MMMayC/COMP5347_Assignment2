@@ -56,11 +56,7 @@ RevisionSchema.statics.findLeastEdits = function(callback){
 RevisionSchema.statics.findLongestHistory = function(callback){
 
     return this.aggregate(
-        {$match:{"anon":{$exists: false}}},
-        {$group:{_id:{title: "$title"}, countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
-        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
-        {$sort:{numOfEdits:1}},
-        {$limit:1}
+
     )
         .exec(callback)
 }
@@ -68,11 +64,7 @@ RevisionSchema.statics.findLongestHistory = function(callback){
 RevisionSchema.statics.findShortestHistory = function(callback){
 
     return this.aggregate(
-        {$match:{"anon":{$exists: false}}},
-        {$group:{_id:{title: "$title"}, countUser: {$addToSet: "$user"},numOfEdits: {$sum:1}}},
-        {$project:{"title":1,uniqueUserCount:{$size:"$uniqueCount"}}},
-        {$sort:{numOfEdits:1}},
-        {$limit:1}
+
     )
         .exec(callback)
 }
