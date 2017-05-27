@@ -10,96 +10,59 @@ head
 	script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 	script(src="https://www.gstatic.com/charts/loader.js")
 	script(src="/js/main.js")
-	//script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
-	//	google.charts.load("current", {packages:["corechart"]});
-	//	google.charts.setOnLoadCallback(drawChart);
-	//	function drawChart() {
-	//	var data = google.visualization.arrayToDataTable([
-	//	['Task', 'Hours per Day'],
-	//	['Administrator',     11],
-	//	['Registered User',      2],
-	//	['Bot',  2],
-	//	['Anonymous',    7]
-	//	]);
-	//	var options = {
-	//	title: 'User Types',
-	//	is3D: true,
-	//	};
-	//	var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-	//	chart.draw(data, options);
-	//	};
-	//script(type='text/javascript').
-	//	google.charts.load('current', {'packages':['bar']});
-	//	google.charts.setOnLoadCallback(drawStuff);
-	//	function drawStuff() {
-	//	var data = new google.visualization.arrayToDataTable([
-	//	['Opening Move', 'Percentage'],
-	//	["King's pawn (e4)", 44],
-	//	["Queen's pawn (d4)", 31],
-	//	["Knight to King 3 (Nf3)", 12],
-	//	["Queen's bishop pawn (c4)", 10],
-	//	['Other', 3]
-	//	]);
-	//	var options = {
-	//	title: 'Chess opening moves',
-	//	width: 900,
-	//	legend: { position: 'none' },
-	//	chart: { title: 'Chess opening moves',
-	//	subtitle: 'popularity by percentage' },
-	//	bars: 'horizontal', // Required for Material Bar Charts.
-	//	axes: {
-	//	x: {
-	//	0: { side: 'top', label: 'Percentage'} // Top x-axis.
-	//	}
-	//	},
-	//	bar: { groupWidth: "90%" }
-	//	};
-	//	var chart = new google.visualization.ColumnChart(document.getElementById('top_x_div'));
-	//	chart.draw(data, options);
-	//	};
-
 		 
-body 
-	h2 Featured
-	h2 Wikipedia
+body
+	nav(class='topnav')
+		p #[strong Featured Wikipedia] >
+		a(href='' id='buttonOverall' class='active') Overall
+		a(href='' id='buttonIndividual') Individual
+	div#header.row
+		div.col-12
+			h1.overall Overall
+			h1.individual Individual
+	div#content.row
+		div.col-6.info
+			div.overall
+				p The Article with the Most Revisions
+				p #[strong #{mostRevisions}]
+				p The Article with the Least Revisions
+				p #[strong #{leastRevisions}]
+				p The Article Edited by the Largest Group of Registered Users
+				p #[strong #{mostEdits}]
+				p The Article Edited by the Largest Group of Registered Users
+				p #[strong #{leastEdits}]
 
-	div#Overall
+			div.individual
+				form(action='/getIndividual' method='GET')
+					label Select an Article
+					select
+						option
+				p Title
+				p #[strong #{articleTitle}]
+				p Revisions
+				p #[strong #{revisions}]
+				p Top 5 Regular Users
+				p #[strong #{regularUsers}]
 
-		h3 Overall
+		div.col-6.charts
+			div.overall
+				p Distribution Charts
+				a(href='' class='chartlink active' id='overallDistriYear') By Year
+				a(href='' class='chartlink' id='overallDistriUser') By User Type
 
-		p The Article with the Most Revisions #{mostRevisions}
-		p The Article with the Least Revisions #{leastRevisions}
-		p The Article Edited by the Largest Group of Registered Users #{mostEdits}
-		p The Article Edited by the Largest Group of Registered Users #{leastEdits}
+				div#overallChart
 
-		a(href='/overallDistriYear' id='overallDistriYear') Distribution by Year & User Type
-		a(href='/overallDistriUser' id='overallDistriUser') Distribution by User Type
+			div.individual
+				p Distribution Charts
+				a(href='' class='chartlink active' id='indiDistriYear') By Year
+				a(href='' class='chartlink' id='indiDistriUser') By User Type
+				a(href='' class='chartlink' id='indiDistriReg') By Regular Users
+				br
+				form(id='selectUser' action='/selectDistriByUsers' method='GET')
+					label Select a User
+					select
+						option
 
-		div#overallChart
-
-	//#piechart_3d(style='width: 900px; height: 500px;')
-	//#top_x_div(style='width: 900px; height: 500px;')
-
-	div#individual
-
-		h3 Individual
-
-		form(action='/getIndividual' method='GET')
-			label Select an Article
-				select
-					option
-
-
-
-
-		p Title #{articleTitle}
-		p Revisions #{revisions}
-		p Top 5 Regular Users #{regularUsers}
-
-		a(href='' id='indiDistriYear') Distribution by Year & User Type
-		a(href='' id='indiDistriUser') Distribution by User Type
-		a(href='' id='indiDistriReg') Distribution by Regular Users
-
-		div#indiCharts
+				div#indiCharts
 
 

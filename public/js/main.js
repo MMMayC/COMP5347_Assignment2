@@ -10,6 +10,7 @@ var options = {'title':"Composition of Earth's atmosphere  ",
 var data
 
 function drawODU(){
+    console.log('drawodu');
     graphData = new google.visualization.DataTable();
     graphData.addColumn('string', 'Element');
     graphData.addColumn('number', 'Percentage');
@@ -34,18 +35,52 @@ function drawODY(){
 
 $(document).ready(function() {
 
+    //$('#overall').hide();
+    $('.individual').hide();
+    $('#selectUser').hide();
+
     $.getJSON('/data',null, function(rdata) {
             data = rdata
-        }
-    );
+    });
 
     $("#overallDistriYear").click(function(event){
         event.preventDefault();
+        $(this).addClass('active').siblings().removeClass('active');
         drawODY()
     })
     $("#overallDistriUser").click(function(event){
         event.preventDefault();
+        $(this).addClass('active').siblings().removeClass('active');
         drawODU()
+    })
+
+    $('#buttonOverall').click(function (event) {
+        event.preventDefault();
+        $('.individual').hide();
+        $('.overall').show();
+        $(this).addClass('active').siblings().removeClass('active');
+    })
+
+    $('#buttonIndividual').click(function (event) {
+        event.preventDefault();
+        $('.overall').hide();
+        $('.individual').show();
+        $(this).addClass('active').siblings().removeClass('active');
+    })
+
+    $('#indiDistriYear').click(function (event) {
+        $('#selectUser').hide();
+        $(this).addClass('active').siblings().removeClass('active');
+    })
+
+    $('#indiDistriUser').click(function (event) {
+        $('#selectUser').hide();
+        $(this).addClass('active').siblings().removeClass('active');
+    })
+
+    $('#indiDistriReg').click(function (event) {
+        $('#selectUser').show();
+        $(this).addClass('active').siblings().removeClass('active');
     })
 
 });
