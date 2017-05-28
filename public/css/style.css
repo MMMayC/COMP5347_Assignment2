@@ -70,6 +70,9 @@ body {
     background-color: #4CAF50;
     color: white;
 }
+.charts{
+    display: block;
+}
 
 .charts a{
     float: left;
@@ -92,3 +95,15 @@ body {
     color: white;
 }
 
+#selectUser{
+    display: block;
+    margin: 5px auto;
+    padding: 0;
+}
+
+#overallChart, #indiChart{
+    display: block;
+    width: 100%;
+    height:300px;
+    margin: auto;
+}

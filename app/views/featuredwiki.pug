@@ -18,11 +18,10 @@ body
 		a(href='' id='buttonIndividual') Individual
 	div#header.row
 		div.col-12
-			h1.overall Overall
-			h1.individual Individual
 	div#content.row
-		div.col-6.info
+		div.col-5.info
 			div.overall
+				h1.overall Overall
 				p The Article with the Most Revisions
 				p #[strong #{mostRevisions}]
 				p The Article with the Least Revisions
@@ -33,8 +32,10 @@ body
 				p #[strong #{leastEdits}]
 
 			div.individual
+				h1.individual Individual
 				form(action='/getIndividual' method='GET')
 					label Select an Article
+					br
 					select
 						option
 				p Title
@@ -44,25 +45,28 @@ body
 				p Top 5 Regular Users
 				p #[strong #{regularUsers}]
 
-		div.col-6.charts
+		div.col-7.charts
 			div.overall
-				p Distribution Charts
+				h3 Distribution Charts
 				a(href='' class='chartlink active' id='overallDistriYear') By Year
 				a(href='' class='chartlink' id='overallDistriUser') By User Type
-
+				br
+				br
 				div#overallChart
 
 			div.individual
-				p Distribution Charts
+				h3 Distribution Charts
 				a(href='' class='chartlink active' id='indiDistriYear') By Year
 				a(href='' class='chartlink' id='indiDistriUser') By User Type
 				a(href='' class='chartlink' id='indiDistriReg') By Regular Users
+				br
 				br
 				form(id='selectUser' action='/selectDistriByUsers' method='GET')
 					label Select a User
 					select
 						option
-
-				div#indiCharts
+				br
+				br
+				div#indiChart
 
 
