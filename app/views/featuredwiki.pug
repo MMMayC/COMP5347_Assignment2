@@ -30,14 +30,20 @@ body
 				p #[strong #{mostEdits}]
 				p The Article Edited by the Largest Group of Registered Users
 				p #[strong #{leastEdits}]
+				p The Article with the Longest History
+				p #[strong #{longestHis}]
+				p The Article with the Shortest History
+				p #[strong #{shortestHis}]
 
 			div.individual
 				h1.individual Individual
 				form(action='/getIndividual' method='GET')
 					label Select an Article
 					br
-					select
+					select(name="title")
 						option
+					input(type = "submit" value = "Submit")
+
 				p Title
 				p #[strong #{articleTitle}]
 				p Revisions
@@ -65,6 +71,7 @@ body
 					label Select a User
 					select
 						option
+					input(type = "submit" value = "Submit")
 				br
 				br
 				div#indiChart

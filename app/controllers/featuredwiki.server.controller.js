@@ -48,70 +48,70 @@ module.exports.showIndex=function(req,res){
 			        		}else{
 			        			console.log(result)
 			        			leastEdits = result
-			        			console.log(leastEdits[0]._id.title)
+			        			console.log(leastEdits[0]._id)
 			                    callback();
 			        		}
 			        	})}
-                // ,
-			     //    	function(callback){
-				 //        	Featuredwiki.findLongestHistory(function(err,result){
-				 //        		if (err){
-				 //        			console.log("Error")
-				 //        		}else{
-				 //        			console.log(result)
-				 //        			longestHis = result
-				 //        			console.log(longestHis[0]._id)
-				 //                    callback();
-				 //        		}
-				 //        	})}
-                // ,
-				 //        	function(callback){
-					//         	Featuredwiki.findShortHistory(function(err,result){
-					//         		if (err){
-					//         			console.log("Error")
-					//         		}else{
-					//         			console.log(result)
-					//         			shortestHis = result
-					//         			console.log(shortestHis[0]._id)
-					//                     callback();
-					//         		}
-					//         	})}
-                // ,
-        			// 		function(callback){
-            		// 			Featuredwiki.findUserType(function(err,result){
-                // 					if (err){
-					// 					console.log("Error")
-               	// 				 	}else{
-                //     					console.log(result)
-                //     					userTypes = result
-                //     					console.log(userTypes[0]._id)
-                //     					callback();
-                // 					}
-					// 			})}
-                // ,
-                //             function(callback){
-                //                 Featuredwiki.findDistribution(function(err,result){
-                //                     if (err){
-                //                         console.log("Error")
-                //                     }else{
-                //                         console.log(result)
-                //                         distribution = result
-                //                         console.log(distribution[0]._id)
-                //                         callback();
-                //                     }
-                //                 })}
-        // ,
-        //             function(callback){
-        //                 Featuredwiki.findArticleTitles(function(err,result){
-        //                     if (err){
-        //                         console.log("Error")
-        //                     }else{
-        //                         console.log(result)
-        //                         articleTitles = result
-        //                         console.log(articleTitles[0]._id)
-        //                         callback();
-        //                     }
-        //                 })}
+                ,
+			        	function(callback){
+				        	Featuredwiki.findLongestHistory(function(err,result){
+				        		if (err){
+				        			console.log("Error")
+				        		}else{
+				        			console.log(result)
+				        			longestHis = result
+				        			console.log(longestHis[0]._id)
+				                    callback();
+				        		}
+				        	})}
+                ,
+				        	function(callback){
+					        	Featuredwiki.findShortestHistory(function(err,result){
+					        		if (err){
+					        			console.log("Error")
+					        		}else{
+					        			console.log(result)
+					        			shortestHis = result
+					        			console.log(shortestHis[0]._id)
+					                    callback();
+					        		}
+					        	})}
+                ,
+        					function(callback){
+            					Featuredwiki.findUserType(function(err,result){
+                					if (err){
+										console.log("Error")
+               					 	}else{
+                    					console.log(result)
+                    					userTypes = result
+                    					console.log(userTypes[0]._id)
+                    					callback();
+                					}
+								})}
+                ,
+                            function(callback){
+                                Featuredwiki.findDistribution(function(err,result){
+                                    if (err){
+                                        console.log("Error")
+                                    }else{
+                                        console.log(result)
+                                        distribution = result
+                                        console.log(distribution[0]._id)
+                                        callback();
+                                    }
+                                })}
+        ,
+                    function(callback){
+                        Featuredwiki.findArticleTitles(function(err,result){
+                            if (err){
+                                console.log("Error")
+                            }else{
+                                console.log(result)
+                                articleTitles = result
+                                console.log(articleTitles[0]._id)
+                                callback();
+                            }
+                        })}
 
 	],function(err,result){ 
 		res.render("featuredwiki.pug", {
@@ -119,12 +119,14 @@ module.exports.showIndex=function(req,res){
 			leastRevisions:leastRevisions[0]._id,
 			mostEdits: mostEdits[0]._id.title,
 			leastEdits: leastEdits[0]._id.title
-            //,
-            // longestHis: longestHis[0]._id,
-            // shortestHis: shortestHis[0]._id,
-            // distribution: distribution[0]._id,
-            // userType: userType[0]._id,
-            // articleTitles: articleTitles[0]._id
+            ,
+            longestHis: longestHis[0]._id
+            ,
+            shortestHis: shortestHis[0]._id
+            ,
+            distribution: distribution[0]._id,
+            userType: userType[0]._id,
+            articleTitles: articleTitles[0]._id
 		});
     });
 	
@@ -150,13 +152,13 @@ module.exports.getIndividual = function (req, res) {
             })}
         ,
         function(callback){
-            Featuredwiki.findNumOfRevisions(function(err,result){
+            Featuredwiki.findNumOfRevisions(title, function(err,result){
                 if (err){
                     console.log("Error")
                 }else{
                     console.log(result)
                     revisions = result
-                    console.log(revisions[0]._id)
+                    console.log(revisions[0]._id.count)
                     callback();
                 }
             })}
@@ -174,7 +176,7 @@ module.exports.getIndividual = function (req, res) {
             })}
         ,
         function(callback){
-            Featuredwiki.findDistribution(function(err,result){
+            Featuredwiki.findDistributionIndi(function(err,result){
                 if (err){
                     console.log("Error")
                 }else{
@@ -186,7 +188,7 @@ module.exports.getIndividual = function (req, res) {
             })}
         ,
         function(callback){
-            Featuredwiki.findUserTypesIndi(function(err,result){
+            Featuredwiki.findUserTypeIndi(function(err,result){
                 if (err){
                     console.log("Error")
                 }else{
@@ -212,7 +214,7 @@ module.exports.getIndividual = function (req, res) {
     ],function(err,result){
         res.render("featuredwiki.pug", {
             articleTitle: articleTitle[0]._id,
-            revisions: revisions[0]._id,
+            revisions: revisions[0]._id.count,
             regularUsers: regularUsers[0]._id.title,
             distribution: distribution[0]._id.title,
             userTypesIndi: userTypesIndi[0]._id,

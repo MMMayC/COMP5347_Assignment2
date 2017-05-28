@@ -21,18 +21,18 @@
       <file leaf-file-name="featuredwiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/featuredwiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="1" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+            <state relative-caret-position="385">
+              <caret line="92" column="26" lean-forward="false" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="featuredwiki.server.controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="featuredwiki.server.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/featuredwiki.server.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" column="30" lean-forward="false" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+            <state relative-caret-position="-1267">
+              <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="128" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -61,17 +61,17 @@
       <file leaf-file-name="featuredwiki.pug" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/featuredwiki.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="64" column="39" lean-forward="false" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+            <state relative-caret-position="227">
+              <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-667">
+            <state relative-caret-position="-579">
               <caret line="124" column="15" lean-forward="false" selection-start-line="124" selection-start-column="15" selection-end-line="124" selection-end-column="15" />
               <folding />
             </state>
@@ -103,12 +103,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/featuredwiki.js" />
-        <option value="$PROJECT_DIR$/app/controllers/featuredwiki.server.controller.js" />
         <option value="$PROJECT_DIR$/app/routes/featuredwiki.server.routes.js" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
-        <option value="$PROJECT_DIR$/app/views/featuredwiki.pug" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/app/views/featuredwiki.pug" />
+        <option value="$PROJECT_DIR$/app/models/featuredwiki.js" />
+        <option value="$PROJECT_DIR$/app/controllers/featuredwiki.server.controller.js" />
       </list>
     </option>
   </component>
@@ -376,12 +376,12 @@
       <workItem from="1495712310692" duration="5441000" />
       <workItem from="1495790469169" duration="16535000" />
       <workItem from="1495842801122" duration="13433000" />
-      <workItem from="1495929897639" duration="4881000" />
+      <workItem from="1495929897639" duration="15551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40290000" />
+    <option name="totallyTimeSpent" value="50960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,14 +572,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style" />
-    <entry file="file://$PROJECT_DIR$/app/models/featuredwiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" column="1" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/route.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2925">
@@ -587,34 +579,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/featuredwiki.server.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="30" lean-forward="false" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/featuredwiki.server.routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/featuredwiki.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="64" column="39" lean-forward="false" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -629,8 +597,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-667">
+        <state relative-caret-position="-579">
           <caret line="124" column="15" lean-forward="false" selection-start-line="124" selection-start-column="15" selection-end-line="124" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/featuredwiki.server.routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/featuredwiki.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/featuredwiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="92" column="26" lean-forward="false" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/featuredwiki.server.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1267">
+          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="128" selection-end-column="47" />
           <folding />
         </state>
       </provider>
