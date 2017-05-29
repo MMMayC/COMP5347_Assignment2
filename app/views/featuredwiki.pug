@@ -70,9 +70,10 @@ body
 				a(href='' class='chartlink' id='indiDistriReg') By Regular Users
 				br
 				br
-				label Select a User
-				select(id="user" onchange='getRegUser()')
-					option
+				div#selectUser
+					label Select a User
+					select(id="user" onchange='getRegUser()')
+						option
 				br
 				br
 				div#indiChart

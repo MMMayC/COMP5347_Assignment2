@@ -90,7 +90,7 @@ function drawODY() {
     chart.draw(data, options);
 }
 
-function drawIDU(result) {
+function drawIDU() {
 
     var data = google.visualization.arrayToDataTable([
         ['User Type', 'Revisions'],
@@ -137,6 +137,7 @@ function drawIDR() {
 }
 
 function drawIDY() {
+    console.log('idy');
     var data = new google.visualization.DataTable();
 
     var admin_cnt=0;
@@ -219,13 +220,20 @@ function getIndividual(){
         $("#user").append("<option value="+ result.reg[4]._id+">"+result.reg[4]._id+"</option>");
 
         temp_result=result;
+
+        drawIDU();
+        drawIDY();
     });
+
+    $('#indiDistriYear').addClass('active').siblings().removeClass('active');
 }
 
 function getRegUser(){
     $.getJSON("http://localhost:3000/selectDistriByUsers?title="+articleTitles[$("#title").val()]._id+"&user="+$("#user").val(), function (result) {
         idr_result=result;
+        drawIDR();
     });
+
 }
 
 
