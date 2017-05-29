@@ -8,15 +8,17 @@ google.charts.setOnLoadCallback(drawIDU);
 google.charts.setOnLoadCallback(drawIDR);
 google.charts.setOnLoadCallback(drawIDY);
 
+var temp_result;
+var idr_result;
 
 function drawODU() {
 
     var data = google.visualization.arrayToDataTable([
         ['User Type', 'Revisions'],
-        ['Administrator',     11],
-        ['Anonymous',      2],
-        ['Bot',  2],
-        ['Regular user', 2]
+        ['Administrator',     userType[1].numOfUsers],
+        ['Anonymous',      userType[2].numOfUsers],
+        ['Bot',  userType[0].numOfUsers],
+        ['Regular user', userType[3].numOfUsers]
     ]);
 
     var options = {
@@ -30,19 +32,47 @@ function drawODU() {
 
 function drawODY() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Year');
+
+    var admin_cnt=0;
+    var anon_cnt=0;
+    var bot_cnt=0;
+    var reg_cnt=0;
+    data.addColumn('string', 'Year');
     data.addColumn('number', 'Administrator');
     data.addColumn('number', 'Anonymous');
     data.addColumn('number', 'Bot');
     data.addColumn('number', 'Regular user');
-
-    data.addRows([
-        [2010, 1, .25, 2, 3],
-        [2011, 1, .25, 2, 3],
-        [2012, 1, .25, 2, 3],
-        [2013, 1, .25, 2, 3],
-        [2014, 1, .25, 2, 3]
-    ]);
+    for(var i=0;i<distribution.length;i++){
+        //Populate for count each type
+        if(distribution[i]._id.usertype=="admin"){
+            admin_cnt=distribution[i].numOfUsers;
+        }
+        else if(distribution[i]._id.usertype=="anon"){
+            anon_cnt=distribution[i].numOfUsers;
+        }
+        else if(distribution[i]._id.usertype=="bot"){
+            bot_cnt=distribution[i].numOfUsers;
+        }
+        else if(distribution[i]._id.usertype=="regular"){
+            reg_cnt=distribution[i].numOfUsers;
+        }
+        if((i+1!=distribution.length)){
+            if((distribution[i]._id.year != distribution[i+1]._id.year)){
+                data.addRow([distribution[i]._id.year,admin_cnt,anon_cnt,bot_cnt,reg_cnt]);
+                admin_cnt=0;
+                anon_cnt=0;
+                bot_cnt=0;
+                reg_cnt=0;
+            }
+        }
+        else{
+            data.addRow([distribution[i]._id.year,admin_cnt,anon_cnt,bot_cnt,reg_cnt]);
+            admin_cnt=0;
+            anon_cnt=0;
+            bot_cnt=0;
+            reg_cnt=0;
+        }
+    }
 
     var options = {
         title: 'Revision Distribution by year and by user type',
@@ -60,15 +90,16 @@ function drawODY() {
     chart.draw(data, options);
 }
 
-function drawIDU() {
+function drawIDU(result) {
 
     var data = google.visualization.arrayToDataTable([
         ['User Type', 'Revisions'],
-        ['Administrator',     11],
-        ['Anonymous',      2],
-        ['Bot',  2],
-        ['Regular user', 2]
+        ['Administrator',     temp_result.userT[1].numOfUsers],
+        ['Anonymous',      temp_result.userT[2].numOfUsers],
+        ['Bot',  temp_result.userT[0].numOfUsers],
+        ['Regular user', temp_result.userT[3].numOfUsers]
     ]);
+
 
     var options = {
         title: 'Revision distribution by user type for article '
@@ -82,21 +113,17 @@ function drawIDU() {
 function drawIDR() {
 
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Year');
+    data.addColumn('string', 'Year');
     data.addColumn('number', 'Revisions');
 
-    data.addRows([
-        [2011, 1],
-        [2012, 2],
-        [2013, 3],
-        [2014, 4],
-        [2015, 5]
-    ]);
+    for(var i=0;i<idr_result.length;i++){
+        data.addRow([idr_result[i]._id.year,idr_result[i].numOfUsers]);
+    }
 
     var options = {
         title: 'Revision distribution by year of user for article',
         hAxis: {
-            title: 'Year',
+            title: 'Year'
         },
         vAxis: {
             title: 'Revisions'
@@ -111,19 +138,47 @@ function drawIDR() {
 
 function drawIDY() {
     var data = new google.visualization.DataTable();
+
+    var admin_cnt=0;
+    var anon_cnt=0;
+    var bot_cnt=0;
+    var reg_cnt=0;
     data.addColumn('string', 'Year');
     data.addColumn('number', 'Administrator');
     data.addColumn('number', 'Anonymous');
     data.addColumn('number', 'Bot');
     data.addColumn('number', 'Regular user');
-
-    data.addRows([
-        ['2010', 1, .25, 2, 3],
-        ['2011', 1, .25, 2, 3],
-        ['2012', 1, .25, 2, 3],
-        ['2013', 1, .25, 2, 3],
-        ['2014', 1, .25, 2, 3]
-    ]);
+    for(var i=0;i<temp_result.dis.length;i++){
+        //Populate for count each type
+        if(temp_result.dis[i]._id.usertype=="admin"){
+            admin_cnt=temp_result.dis[i].numOfUsers;
+        }
+        else if(temp_result.dis[i]._id.usertype=="anon"){
+            anon_cnt=temp_result.dis[i].numOfUsers;
+        }
+        else if(temp_result.dis[i]._id.usertype=="bot"){
+            bot_cnt=temp_result.dis[i].numOfUsers;
+        }
+        else if(temp_result.dis[i]._id.usertype=="regular"){
+            reg_cnt=temp_result.dis[i].numOfUsers;
+        }
+        if((i+1!=temp_result.dis.length)){
+            if((temp_result.dis[i]._id.year != temp_result.dis[i+1]._id.year)){
+                data.addRow([temp_result.dis[i]._id.year,admin_cnt,anon_cnt,bot_cnt,reg_cnt]);
+                admin_cnt=0;
+                anon_cnt=0;
+                bot_cnt=0;
+                reg_cnt=0;
+            }
+        }
+        else{
+            data.addRow([temp_result.dis[i]._id.year,admin_cnt,anon_cnt,bot_cnt,reg_cnt]);
+            admin_cnt=0;
+            anon_cnt=0;
+            bot_cnt=0;
+            reg_cnt=0;
+        }
+    }
 
     var options = {
         title: 'Revision Distribution by year and by user type for article ',
@@ -139,6 +194,38 @@ function drawIDY() {
         document.getElementById('indiChart'));
 
     chart.draw(data, options);
+}
+
+function getIndividual(){
+    $("#individualTitle").empty();
+    $("#revs").empty();
+    $("#top5").empty();
+    $("#user").empty();
+    event.preventDefault();
+    var title_tmp = articleTitles[$("#title").val()]._id;
+    $("#individualTitle").append("<strong>" + title_tmp + "</strong>");
+    $.getJSON("http://localhost:3000/getIndividual?title="+title_tmp, function (result) {
+        $("#revs").append("<strong>" + result.rev[0].count + "</strong>");
+        $("#top5").append("<strong> 1." +  result.reg[0]._id +" " + result.reg[0].numOfRevs + "</strong><br>");
+        $("#top5").append("<strong> 2." +  result.reg[1]._id +" " + result.reg[1].numOfRevs + "</strong><br>");
+        $("#top5").append("<strong> 3." +  result.reg[2]._id +" " + result.reg[2].numOfRevs + "</strong><br>");
+        $("#top5").append("<strong> 4." +  result.reg[3]._id +" " + result.reg[3].numOfRevs + "</strong><br>");
+        $("#top5").append("<strong> 5." +  result.reg[4]._id +" " + result.reg[4].numOfRevs + "</strong><br>");
+        $("#user").append("<option value=-1></option>");
+        $("#user").append("<option value="+ result.reg[0]._id+">"+result.reg[0]._id+"</option>");
+        $("#user").append("<option value="+ result.reg[1]._id+">"+result.reg[1]._id+"</option>");
+        $("#user").append("<option value="+ result.reg[2]._id+">"+result.reg[2]._id+"</option>");
+        $("#user").append("<option value="+ result.reg[3]._id+">"+result.reg[3]._id+"</option>");
+        $("#user").append("<option value="+ result.reg[4]._id+">"+result.reg[4]._id+"</option>");
+
+        temp_result=result;
+    });
+}
+
+function getRegUser(){
+    $.getJSON("http://localhost:3000/selectDistriByUsers?title="+articleTitles[$("#title").val()]._id+"&user="+$("#user").val(), function (result) {
+        idr_result=result;
+    });
 }
 
 

@@ -4,12 +4,16 @@ html(lang="en")
 head
 	title Featured Wikipedia
 	link(rel='stylesheet'
-		 type='text/css'
+		type='text/css'
 		 href='css/style.css'
 		 media='screen')
 	script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
 	script(src="https://www.gstatic.com/charts/loader.js")
 	script(src="/js/main.js")
+	script(type='text/javascript').
+		var distribution=!{JSON.stringify(distribution)};
+		var userType=!{JSON.stringify(userType)};
+		var articleTitles=!{JSON.stringify(articleTitles)};
 		 
 body
 	nav(class='topnav')
@@ -37,19 +41,18 @@ body
 
 			div.individual
 				h1.individual Individual
-				form(action='/getIndividual' method='GET')
-					label Select an Article
-					br
-					select(name="title")
-						option
-					input(type = "submit" value = "Submit")
-
+				label Select an Article
+				br
+				select(id="title" onchange='getIndividual()')
+					option
+					- for(var i = 0; i < articleTitles.length; i ++)
+						option(value=i) #{articleTitles[i]._id}
 				p Title
-				p #[strong #{articleTitle}]
+				p#individualTitle
 				p Revisions
-				p #[strong #{revisions}]
+				p#revs
 				p Top 5 Regular Users
-				p #[strong #{regularUsers}]
+				p#top5
 
 		div.col-7.charts
 			div.overall
@@ -67,11 +70,9 @@ body
 				a(href='' class='chartlink' id='indiDistriReg') By Regular Users
 				br
 				br
-				form(id='selectUser' action='/selectDistriByUsers' method='GET')
-					label Select a User
-					select
-						option
-					input(type = "submit" value = "Submit")
+				label Select a User
+				select(id="user" onchange='getRegUser()')
+					option
 				br
 				br
 				div#indiChart

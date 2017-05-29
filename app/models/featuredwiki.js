@@ -116,7 +116,7 @@ RevisionSchema.statics.findRegularUsers = function (title, callback) {
 
 RevisionSchema.statics.findDistributionIndi = function (title, callback) {
     return this.aggregate([
-		{$match:{'title':title}}
+		{$match:{'title':title}},
         {$group:{_id:{ year:{"$substr": ["$timestamp", 0, 4 ]}, usertype:"$userType"},numOfUsers: {$sum:1}}},
         {$sort:{'_id.year': 1}}
     ])
@@ -133,10 +133,19 @@ RevisionSchema.statics.findUserTypeIndi = function (title, callback) {
 
 RevisionSchema.statics.findDistributionByRegUsers = function (title, user, callback) {
     return this.aggregate([
-        {$match: {'title':title, 'user': user}}
-        {$group:{_id: '$timestamp', revsByYear: "$substr": [ "$timestamp", 0, 4 ]}}
+        {$match: {'title':title, 'user': user}},
+        {$group:{_id:{ year:{"$substr": ["$timestamp", 0, 4 ]}, usertype:"$userType"},numOfUsers: {$sum:1}}},
+        {$sort:{'_id.year': 1}}
     ])
     .exec(callback)
+}
+
+RevisionSchema.statics.findTitle = function (title,callback) {
+    return this.aggregate([
+        {$match: {'title':title}},
+        {$group:{_id: "$title"}}
+    ])
+        .exec(callback)
 }
 
 
